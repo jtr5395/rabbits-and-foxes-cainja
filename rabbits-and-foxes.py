@@ -66,7 +66,7 @@
 
 # In[1]:
 
-get_ipython().magic('matplotlib inline')
+
 import numpy as np
 from matplotlib import pyplot as plt
 
