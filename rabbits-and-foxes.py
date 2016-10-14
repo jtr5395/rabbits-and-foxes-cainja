@@ -104,3 +104,4 @@ for i in range(len(secondPeakMax)):
     movingAverage.append(sum(secondPeakMax[:i+1])/len(secondPeakMax[:i+1]))
     
 plt.plot(movingAverage)
+plt.show()
