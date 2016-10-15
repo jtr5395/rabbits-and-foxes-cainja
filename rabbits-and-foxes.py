@@ -70,7 +70,7 @@ secondPeakTime = []
 foxPopulationDied = 0
 
 for i in range(n):
-    t = 0
+    t = 0.
     tList = [0]
     RabbitList = [R]
     FoxList = [F]
