@@ -63,7 +63,7 @@ class Population:
             self.F += 1
 
 
-n = 100
+n = 2
 
 secondPeakMax = []
 secondPeakTime = []
