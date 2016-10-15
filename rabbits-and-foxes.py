@@ -10,7 +10,7 @@ k2 = 0.00004
 k3 = 0.0004
 k4 = 0.04
 
-days = 600
+days = 600.
 
 import random
 
