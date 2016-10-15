@@ -63,7 +63,7 @@ class Population:
             self.F += 1
 
 
-n = 2
+n = 1
 
 secondPeakMax = []
 secondPeakTime = []
@@ -97,11 +97,13 @@ for i in range(n):
     foxPopulationDied += 1
     
 print('Fox Population Died out {0} times out of {1}'.format(foxPopulationDied, n))
-print('Average maximum fox population (2nd Peak) was {}'.format(sum(secondPeakMax)/len(secondPeakMax)))
+
+if len(secondPeakMax) != 0:
+    print('Average maximum fox population (2nd Peak) was {}'.format(sum(secondPeakMax)/len(secondPeakMax)))
 
 movingAverage = []
 for i in range(len(secondPeakMax)):
     movingAverage.append(sum(secondPeakMax[:i+1])/len(secondPeakMax[:i+1]))
     
-plt.plot(movingAverage)
-plt.show()
+    plt.plot(movingAverage)
+    plt.show()
