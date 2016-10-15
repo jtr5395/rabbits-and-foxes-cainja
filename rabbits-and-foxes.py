@@ -44,7 +44,6 @@ class Population:
         pRabbitDeath = self.RabbitDies()/totalRate
         pRabbitBirth = self.RabbitBorn()/totalRate
         pFoxDeath = self.FoxDies()/totalRate
-        pFoxBirth = self.FoxBorn()/totalRate
         referenceList = [pRabbitDeath, pRabbitDeath + pRabbitBirth, pRabbitDeath+pRabbitBirth+pFoxDeath, 1]
         
         u = 1 - random.uniform(0,1)
@@ -63,30 +62,26 @@ class Population:
             self.F += 1
 
 
-n = 1
+Runs = 10000
 
 secondPeakMax = []
 secondPeakTime = []
 foxPopulationDied = 0
 
-for i in range(n):
+for i in range(Runs):
     t = 0.
-    tList = [0]
+    tList = [0.]
     RabbitList = [R]
     FoxList = [F]
 
     Simulation = Population(R, F)
     while t < days:
-        timing = random.uniform(0,1)
-        j = random.uniform(0,1)
-    #     t += math.log(1/(1-j))/(Simulation.rateOfExpectedEvents())
         t += random.expovariate(Simulation.rateOfExpectedEvents())
         tList.append(t)
         Simulation.event()
         RabbitList.append(Simulation.R)
         FoxList.append(Simulation.F)
         if Simulation.F == 0:
-#             print('Fox Population has Died at {} days'.format(t))
             break
     else:
         foxMaxTime, maxFoxMC = max(enumerate(FoxList[200:]), key=operator.itemgetter(1))
@@ -95,15 +90,14 @@ for i in range(n):
         continue
 
     foxPopulationDied += 1
-    
-print('Fox Population Died out {0} times out of {1}'.format(foxPopulationDied, n))
-
-if len(secondPeakMax) != 0:
-    print('Average maximum fox population (2nd Peak) was {}'.format(sum(secondPeakMax)/len(secondPeakMax)))
 
 movingAverage = []
 for i in range(len(secondPeakMax)):
     movingAverage.append(sum(secondPeakMax[:i+1])/len(secondPeakMax[:i+1]))
-    
+
+print('Fox Population Died out {0} times out of {1}'.format(foxPopulationDied, Runs))
+
+if len(secondPeakMax) != 0:
+    print('Average maximum fox population (2nd Peak) was {}'.format(sum(secondPeakMax)/len(secondPeakMax)))
     plt.plot(movingAverage)
     plt.show()
