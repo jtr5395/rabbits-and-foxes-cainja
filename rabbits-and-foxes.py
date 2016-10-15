@@ -13,6 +13,7 @@ k4 = 0.04
 days = 600.
 
 import random
+import numpy as np
 
 class Population:
     '''
@@ -62,7 +63,7 @@ class Population:
             self.F += 1
 
 
-Runs = 10000
+Runs = 10
 
 secondPeakMax = []
 secondPeakTime = []
@@ -84,7 +85,8 @@ for i in range(Runs):
         if Simulation.F == 0:
             break
     else:
-        foxMaxTime, maxFoxMC = max(enumerate(FoxList[200:]), key=operator.itemgetter(1))
+        maxFoxMC = max((FoxList[200:]))
+        foxMaxTime = np.argmax(FoxList[200:])
         secondPeakMax.append(maxFoxMC)
         secondPeakTime.append(tList[foxMaxTime])
         continue
