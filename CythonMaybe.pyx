@@ -1,13 +1,6 @@
-import random
-import numpy as np
-cimport numpy as np
-
-import cython
-@cython.cdivision(True)
-cpdef tuple cainjaCython():
-
-    cdef int R, F
-    cdef float k1, k2, k3, k4, days
+def cainjaCython(Runs):
+    import random
+    import numpy as np
 
     R = 400
     F = 200
@@ -17,6 +10,10 @@ cpdef tuple cainjaCython():
     k4 = 0.04
 
     days = 600.
+
+    secondPeakMax = []
+    secondPeakTime = []
+    foxPopulationDied = 0
 
     class Population:
         '''
@@ -66,11 +63,7 @@ cpdef tuple cainjaCython():
                 self.F += 1
 
 
-    Runs = 10
 
-    secondPeakMax = []
-    secondPeakTime = []
-    foxPopulationDied = 0
 
     for i in range(Runs):
         t = 0.
@@ -95,3 +88,5 @@ cpdef tuple cainjaCython():
             continue
 
         foxPopulationDied += 1
+
+    return(foxMaxTime, maxFoxMC, secondPeakMax, secondPeakTime, foxPopulationDied)
