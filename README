@@ -1,0 +1,19 @@
+This is no longer necessary
+
+For this code to work, CythonMaybe needs to be converted into a module.
+
+To do this:
+1. Make sure the setup.py file looks like this:
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(
+    ext_modules=cythonize("CythonMaybe.pyx"),
+)
+
+2. In the terminal, type:
+python setup.py build_ext --inplace
+
+This will convert CythonMaybe
+
+3. Run rabbits-and-foxes.py normally

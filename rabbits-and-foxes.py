@@ -1,12 +1,12 @@
 from matplotlib import pyplot as plt
-
+import pyximport; pyximport.install()
 import CythonMaybe as CM
 
 
 # # Implementing Kinetic Monte Carlo Simulations
 
 
-Runs = 10000
+Runs = 10
 
 foxMaxTime, maxFoxMC, secondPeakMax, secondPeakTime, foxPopulationDied = CM.cainjaCython(Runs)
 
